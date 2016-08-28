@@ -14,7 +14,6 @@ new Vue({
   },
   ready: function () {
     this.getApi()
-    console.log('test')
   }
 
 })
