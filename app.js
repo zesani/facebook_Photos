@@ -13,7 +13,7 @@ new Vue({
     }
   },
   ready: function () {
-    this.getApi()
+    this.getApi()sasdasd
   }
 
 })
