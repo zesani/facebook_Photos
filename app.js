@@ -1,19 +1,33 @@
+var access_token = 'EAACEdEose0cBAMu1GmEYY6eBTJUupQjBg7UIhtMpAmwSTMN9W8f8OxsdZCZAK4sye8nA8Hvf7XXH9AQEZCZBvEsPjKV2ed06EeBQOaVgjCHvkO1IBGZB5uDnQzSFwZBbegbYueh1g1EunEoYKKhCmdZAMSqz0gSs8kpZBS4W13QPZCQZDZD'
+var urla = 'https://graph.facebook.com/v2.4/1192501397479794/photos?fields=images%2Ccreated_time%2Cname&limit=10&access_token='+access_token
 new Vue({
-  el: '.app',
+  el: '#app',
   data: {
-    msg: 'hello',
-    result: 'test'
+    result: 'test',
+    url:urla,
+    check:0,
+    temp:urla
   },
   methods: {
     getApi: function () {
-      var url = 'https://graph.facebook.com/v2.4/342762452490458?fields=photos%7Bimages%2Cname%2Ccreated_time%2Cfrom%7D&access_token=EAACEdEose0cBAHctqs7tLDAhHyilLarQkaQexjSXBg7c0DQgV1hjWJcYurEAnI76F32RRLPY6gfDekHB2LzzBcZB35BNnAHOdkMCIB1gJG1Um0oqK1YrwfO0gqbG7YZBT6xEZCTdDH9mV6vBPuUp9iQJVB7mRTLZBi48yubS5QZDZD'
-      this.$http.get(url).then(function (res) {
-        this.result = JSON.parse(res.data).photos.data
+      var vm = this
+      this.$http.get(this.url).then(function (res) {
+        vm.result = JSON.parse(res.data).data
+        vm.url = JSON.parse(res.data).paging.next
+        if (typeof(vm.url) == "undefined")
+        vm.url=vm.temp
+        console.log(vm.url)
       })
+    },
+    page: function () {
+      location.href='https://www.facebook.com/NetworkKMUTNB/?fref=ts'
     }
   },
   ready: function () {
     this.getApi()
+    var v = this
+    setInterval(function () {
+      v.getApi()
+    }, 10000)
   }
-
 })

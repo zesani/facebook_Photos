@@ -1,4 +1,11 @@
 .box {
-  margin-top: 50px;
-  margin-left: 25px;
+margin-top: 30px;
+position: absolute;
+left:5%;
+margin-bottom: 30px;
+
+}
+body{
+  background-image: url(https://scontent.fbkk5-3.fna.fbcdn.net/t31.0-8/14124425_571411776394286_5722225998867194394_o.jpg);
+  background-repeat:repeat;
 }
